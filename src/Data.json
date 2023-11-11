@@ -8,6 +8,8 @@
       "category": "Clothing",
       "section": "Top cloths For You",
       "image": "/images/Denim Jacket.png",
+      "bigImage": "/images/Big Denim Jacket.png",
+      "smallImage": "/images/Small Denim Jacket.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Stay warm and stylish with our premium jackets. Perfect for any weather, our jackets are made with the highest quality materials to ensure maximum comfort and durability. With a wide range of colors and styles to choose from, you can find the perfect jacket to suit your personal taste and keep you looking great no matter the occasion. Keep the cold out and your style on point with our must-have jackets – shop now!"
@@ -21,6 +23,8 @@
       "category": "Clothing",
       "section": "Top cloths For You",
       "image": "/images/Denim Shirt.png",
+      "bigImage": "/images/Big Denim Shirt.png",
+      "smallImage": "/images/Small Denim Shirt.png",
       "rating": 4,
       "numberOfRatings": 112,
       "description": "Introducing our Denim t-shirt, the perfect addition to any wardrobe. Our t-shirt is made from high-quality materials that are both durable and comfortable to wear. These unique shirt is sure to turn heads and make you stand out from the crowd. Whether you're going out with friends, running errands, or just relaxing at home, our t-shirt is versatile enough to wear for any occasion."
@@ -34,6 +38,8 @@
       "category": "Clothing",
       "section": "Top cloths For You",
       "image": "/images/Flare jeans.png",
+      "bigImage": "/images/Big Flare jeans.png",
+      "smallImage": "/images/Small Flare jeans.png",
       "rating": 5,
       "numberOfRatings": 141,
       "description": "Step up your style game with these premium quality jeans trousers. Made from 100% cotton, these trousers are both comfortable and durable. They feature a classic straight leg design with a trendy wash that's perfect for any occasion. The 5-pocket styling and button-fly closure make them both functional and stylish. Whether you're dressing up for a night out or keeping it casual for a weekend hangout."
@@ -47,6 +53,8 @@
       "category": "Clothing",
       "section": "Top cloths For You",
       "image": "/images/pajamas.png",
+      "bigImage": "/images/Big pajamas.png",
+      "smallImage": "/images/Small pajamas.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Step up your style game with these premium quality jeans trousers. Made from 100% cotton, these trousers are both comfortable and durable. They feature a classic straight leg design with a trendy wash that's perfect for any occasion. The 5-pocket styling and button-fly closure make them both functional and stylish. Whether you're dressing up for a night out or keeping it casual for a weekend hangout."
@@ -60,6 +68,8 @@
       "category": "Clothing",
       "section": "Other Quality",
       "image": "/images/Salty Crush Mini.png",
+      "bigImage": "/images/Big Salty Crush Mini.png",
+      "smallImage": "/images/Small Salty Crush Mini.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Stylish and versatile skirt in excellent condition. Its flattering cut and comfortable fabric make it a great choice for any occasion. Pair it with your favorite top and accessories for a chic and effortless look."
@@ -73,6 +83,8 @@
       "category": "Clothing",
       "section": "Other Quality",
       "image": "/images/Ia Blouse.png",
+      "bigImage": "/images/Big Ia Blouse.png",
+      "smallImage": "/images/Small Ia Blouse.png",
       "rating": 4,
       "numberOfRatings": 112,
       "description": "Stylish and versatile skirt in excellent condition. Its flattering cut and comfortable fabric make it a great choice for any occasion. Pair it with your favorite top and accessories for a chic and effortless look."
@@ -86,6 +98,8 @@
       "category": "Bag",
       "section": "Other Quality",
       "image": "/images/ferragamo bag.png",
+      "bigImage": "/images/Big ferragamo bag.png",
+      "smallImage": "/images/Small ferragamo bag.png",
       "rating": 4,
       "numberOfRatings": 141,
       "description": "Add a touch of sophistication to your ensemble with this stylish handbag. Made with high-quality materials, it is both durable and fashionable. The versatile design and spacious interior make it perfect for everyday use or special occasions. Make a statement and elevate your look with this must-have accessory."
@@ -99,6 +113,8 @@
       "category": "Jewery",
       "section": "Other Quality",
       "image": "/images/locket.png",
+      "bigImage": "/images/Big locket.png",
+      "smallImage": "/images/Small locket.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Elevate your outfit with this stunning necklace. Its unique design and high-quality materials make it a perfect accessory for any occasion. The attention-grabbing pendant and delicate chain add a touch of elegance and sophistication to any outfit. Treat yourself or surprise someone special with this beautiful piece."
@@ -112,6 +128,8 @@
       "category": "shoe",
       "section": "High Quality Shoes",
       "image": "/images/Backstay Stiff.png",
+      "bigImage": "/images/Big Backstay Stiff.png",
+      "smallImage": "/images/Small Backstay Stiff.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Introducing the Backstay stiff shoe - the perfect footwear for those seeking superior support and stability during physical activities. Crafted with a durable and breathable mesh upper, these shoes are designed to keep your feet cool and comfortable even during the most intense workouts. The Backstay technology, which features a reinforced heel and midfoot structure."
@@ -125,6 +143,8 @@
       "category": "shoe",
       "section": "High Quality Shoes",
       "image": "/images/Loafer Heel.png",
+      "bigImage": "/images/Big Loafer Heel.png",
+      "smallImage": "/images/Small Loafer Heel.png",
       "rating": 5,
       "numberOfRatings": 112,
       "description": "Introducing the stylish and versatile loafer heel shoe - the perfect footwear for any occasion.Crafted with a sleek and classic design, these shoes are made with high-quality materials to ensure both durability and comfort. The soft and supple leather upper conforms to your foot for a custom fit, while the cushioned insole provides all-day comfort and support."
@@ -132,12 +152,14 @@
 
     {
       "id": 11,
-      "name": "All Stars",
+      "name": "Patent leather",
       "previewDescription": "These shoe consists of a stitched upper portion, and a toe cap and outsole usually made of rubber.",
       "price": "520.90",
       "category": "shoe",
       "section": "High Quality Shoes",
       "image": "/images/All Stars.png",
+      "bigImage": "/images/Big Patent leather.png",
+      "smallImage": "/images/Small Patent leather.png",
       "rating": 5,
       "numberOfRatings": 141,
       "description": "Introducing the iconic and timeless All Stars shoe - the perfect footwear for anyone who wants to make a statement with their style.Crafted with a durable canvas upper and a sturdy rubber outsole, these shoes are designed to stand the test of time. The classic design features a lace-up front and signature branding on the side, making it instantly recognizable and highly coveted."
@@ -151,6 +173,8 @@
       "category": "shoe",
       "section": "High Quality Shoes",
       "image": "/images/Patent leather.png",
+      "bigImage": "/images/Big Patent leather.png",
+      "smallImage": "/images/Small Patent leather.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "Introducing the sophisticated and stylish Patent leather shoe - the perfect footwear for any occasion.Crafted with a high-quality patent leather upper, these shoes are designed to make a statement. The glossy finish adds a touch of glamour to any outfit, while the durable material ensures that your shoes will look great for years to come."
@@ -164,6 +188,8 @@
       "category": "shoe",
       "section": "Other Standard",
       "image": "/images/Beach Shoes.png",
+      "bigImage": "/images/Big Beach Shoes.png",
+      "smallImage": "/images/Small Beach Shoes.png",
       "rating": 5,
       "numberOfRatings": 151,
       "description": "These shoes are the perfect finishing touch, with a range of colors and sizes to choose from. "
@@ -177,6 +203,8 @@
       "category": "shoe",
       "section": "Other Standard",
       "image": "/images/The Fila Hover.png",
+      "bigImage": "/images/Big The Fila Hover.png",
+      "smallImage": "/images/Small The Fila Hover.png",
       "rating": 5,
       "numberOfRatings": 112,
       "description": "Introducing the stylish and comfortable Fila shoe - the perfect footwear for anyone who values both fashion and function.Crafted with high-quality materials and superior craftsmanship, these shoes are designed to provide both durability and comfort. The sleek and modern design features the iconic Fila logo, making them instantly recognizable and highly coveted."
@@ -190,6 +218,8 @@
       "category": "shoe",
       "section": "Other Standard",
       "image": "/images/Nike loafer.png",
+      "bigImage": "/images/Big Nike loafer.png",
+      "smallImage": "/images/Small Nike loafer.png",
       "rating": 5,
       "numberOfRatings": 141,
       "description": "Introducing the stylish and comfortable Fila shoe - the perfect footwear for anyone who values both fashion and function.Crafted with high-quality materials and superior craftsmanship, these shoes are designed to provide both durability and comfort. The sleek and modern design features the iconic Fila logo, making them instantly recognizable and highly coveted."
@@ -197,12 +227,14 @@
 
     {
       "id": 16,
-      "name": "Adidas pair ",
+      "name": "Adidas pair",
       "previewDescription": "A pair of Fila shoe that combine style, comfort and durability in one.",
       "price": "2500",
       "category": "shoe",
       "section": "Other Standard",
       "image": "/images/Adidas pair.png",
+      "bigImage": "/images/Big Adidas pair.png",
+      "smallImage": "/images/Small Adidas pair.png",
       "rating": 5,
       "numberOfRatings": 112,
       "description": "Introducing the stylish and comfortable Adidas shoes - the perfect footwear for anyone who values both fashion and function.With a cushioned insole and a breathable lining, these shoes are perfect for everyday wear. The non-slip outsole provides excellent traction on any surface, making it easy to walk with confidence, even on slippery or uneven surfaces."
