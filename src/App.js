@@ -3,25 +3,31 @@ import jsonData from "./Data.json";
 import React from "react";
 
 export default function App() {
+  const [showCart, setShowCart] = useState(false);
   return (
     <div className="app-container">
-      <Nav />
-      <Body />
+      <Nav onHandleCart={handleCart} />
+      <Body showCart={showCart} />
       <Footer />
     </div>
   );
+
+  function handleCart() {
+    setShowCart(!showCart);
+    console.log(showCart);
+  }
 }
 
-function Nav() {
+function Nav({ onHandleCart }) {
   return (
     <nav>
       <p>Fashion Frenzy</p>
-      <img src="/icons/cart.svg" alt="Cart" />
+      <img src="/icons/cart.svg" alt="Cart" onClick={onHandleCart} />
     </nav>
   );
 }
 
-function Body() {
+function Body({ showCart }) {
   const [displayBody, setDisplayBody] = useState(true);
   const [productId, setProductID] = useState(0);
   const [sortByShow, setSortByShow] = useState(false);
@@ -117,79 +123,84 @@ function Body() {
     console.log(products);
   }
 
-  if (displayBody) {
-    return (
-      <div className="body" key={1}>
-        <Main />
-        <Sort
-          handleSortBy={handleSortBy}
-          handlePriceRange={handlePriceRange}
-          sortByShow={sortByShow}
-          setSortByShow={setSortByShow}
-          priceShow={priceShow}
-          setPriceShow={setPriceShow}
-          reviewShow={reviewShow}
-          setReviewShow={setReviewShow}
-        />
-        <ProductsContainer
-          onHandleDisplay={handleDisplay}
-          productArray={productArray}
-        />
-      </div>
-    );
-  } else
-    return ProductDisplay.map((product) => {
-      return (
-        <div key={2}>
-          <img
-            className="back-btn"
-            src="/icons/back-button.svg"
-            alt="back"
-            onClick={() => setDisplayBody(true)}
+  return (
+    <div className="body">
+      {displayBody && !showCart && (
+        <>
+          <Main />
+          <Sort
+            handleSortBy={handleSortBy}
+            handlePriceRange={handlePriceRange}
+            sortByShow={sortByShow}
+            setSortByShow={setSortByShow}
+            priceShow={priceShow}
+            setPriceShow={setPriceShow}
+            reviewShow={reviewShow}
+            setReviewShow={setReviewShow}
           />
-          <div className="product-main">
-            <div className="image-container">
-              <img src={product.bigImage} alt="product" />
-            </div>
-            <div className="product-des">
-              <h1>{product.name}</h1>
-              <p>{product.description}</p>
-              <div className="discount">
-                <img src="/icons/plus discount.svg" alt="+" />
-                <p>Extra 3% Off</p>
-              </div>
-              <div className="stars-des">
-                <div className="stars">
-                  <img src="/icons/star.svg" alt="star" />
-                  <img src="/icons/star.svg" alt="star" />
-                  <img src="/icons/star.svg" alt="star" />
-                  <img src="/icons/star.svg" alt="star" />
-                  <img src="/icons/star.svg" alt="star" />
+          <ProductsContainer
+            onHandleDisplay={handleDisplay}
+            productArray={productArray}
+          />
+        </>
+      )}
+      {!displayBody &&
+        ProductDisplay.map((product) => {
+          return (
+            <div key={2}>
+              <img
+                className="back-btn"
+                src="/icons/back-button.svg"
+                alt="back"
+                onClick={() => setDisplayBody(true)}
+              />
+              <div className="product-main">
+                <div className="image-container">
+                  <img src={product.bigImage} alt="product" />
                 </div>
-                <p>5.5 Ratings </p>
-              </div>
-              <h1 className="price-des">
-                $<span>{product.price}</span>
-              </h1>
-              <div className="product-colour">
-                <p>Colors Available:</p>
-                <div>
-                  <img src={product.smallImage} alt="product" />
+                <div className="product-des">
+                  <h1>{product.name}</h1>
+                  <p>{product.description}</p>
+                  <div className="discount">
+                    <img src="/icons/plus discount.svg" alt="+" />
+                    <p>Extra 3% Off</p>
+                  </div>
+                  <div className="stars-des">
+                    <div className="stars">
+                      <img src="/icons/star.svg" alt="star" />
+                      <img src="/icons/star.svg" alt="star" />
+                      <img src="/icons/star.svg" alt="star" />
+                      <img src="/icons/star.svg" alt="star" />
+                      <img src="/icons/star.svg" alt="star" />
+                    </div>
+                    <p>5.5 Ratings </p>
+                  </div>
+                  <h1 className="price-des">
+                    $<span>{product.price}</span>
+                  </h1>
+                  <div className="product-colour">
+                    <p>Colors Available:</p>
+                    <div>
+                      <img src={product.smallImage} alt="product" />
+                    </div>
+                  </div>
+                  <div className="shipping-info">
+                    <h2>Shipping: $150.87</h2>
+                    <p>
+                      From China to Nigeria via AliExpress Standard Shipping
+                      Estimated delivery on Mar 12
+                    </p>
+                  </div>
+                  <button>Buy Now</button>
                 </div>
               </div>
-              <div className="shipping-info">
-                <h2>Shipping: $150.87</h2>
-                <p>
-                  From China to Nigeria via AliExpress Standard Shipping
-                  Estimated delivery on Mar 12
-                </p>
-              </div>
-              <button>Buy Now</button>
             </div>
-          </div>
-        </div>
-      );
-    });
+          );
+        })}
+      {/* NOT DONE */}
+      {showCart && displayBody && <Footer />}
+    </div>
+  );
 }
 
 function Main() {
