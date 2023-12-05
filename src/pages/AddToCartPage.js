@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { AddToCartProduct } from "../components/AddToCartProduct";
 
 function AddToCartPage({ cart, dispatch }) {
+  const AllProductChecked = cart.every((item) => item.checked === true);
+
+  console.log(AllProductChecked);
+
   return (
     <div className="cart-meun-container">
       <Link to="/">
@@ -9,7 +13,6 @@ function AddToCartPage({ cart, dispatch }) {
           className="back-btn-cart"
           src="/icons/back-button.svg"
           alt="back"
-          // onClick={onHandleCart}
         />
       </Link>
       <div className="item-summary-div">
@@ -28,8 +31,8 @@ function AddToCartPage({ cart, dispatch }) {
               <input
                 type="checkbox"
                 id="checkbox"
-                // checked={selectAll}
-                // onClick={handleSelectAllChange}
+                checked={cart.length && AllProductChecked}
+                onClick={() => dispatch({ type: "CHECKED_ALL_ITEMS" })}
               />
               <label>All</label>
             </form>

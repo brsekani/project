@@ -22,7 +22,13 @@ export function AddToCartProduct({ product, dispatch, index }) {
     <>
       <div>
         <form>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={product.checked}
+            onClick={() =>
+              dispatch({ type: "TOGGLE_CHECK_PRODUCT", payload: product.id })
+            }
+          />
         </form>
       </div>
       <div className="item-pic-price-cont">

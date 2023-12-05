@@ -7,7 +7,7 @@ import { Nav } from "../components/Nav";
 import Sort from "../components/Sort";
 import { Link } from "react-router-dom";
 
-function Body({ dispatch }) {
+function Body({ dispatch, products }) {
   return (
     <div className="body">
       <Nav>
@@ -18,7 +18,7 @@ function Body({ dispatch }) {
       </Nav>
       <Main />
       <Sort />
-      <CategoriesContainer dispatch={dispatch} />
+      <CategoriesContainer products={products} />
       <Footer />
     </div>
   );

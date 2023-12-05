@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import AddToCartPage from "./pages/AddToCartPage";
 import CheckOutpage from "./pages/CheckOutpage";
 import Homepage from "./pages/Homepage";
@@ -6,6 +6,11 @@ import ProductDetails from "./pages/ProductDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import HighQualityShoes from "./components/HighQualityShoes";
+import OtherQuality from "./components/OtherQuality";
+import OtherStandard from "./components/OtherStandard";
+import TopClotheContainer from "./components/TopClotheContainer";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -54,6 +59,36 @@ const reducer = (state, action) => {
         cart: updatedCart,
       };
 
+    case "TOGGLE_CHECK_PRODUCT":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload
+            ? { ...item, checked: !item.checked }
+            : item
+        ),
+      };
+
+    case "CHECKED_ALL_ITEMS":
+      const AllProductChecked = state.cart.every(
+        (item) => item.checked === true
+      );
+      const checkedAllItems = state.cart.map((item) =>
+        AllProductChecked
+          ? {
+              ...item,
+              checked: false,
+            }
+          : {
+              ...item,
+              checked: true,
+            }
+      );
+      return {
+        ...state,
+        cart: checkedAllItems,
+      };
+
     // case "SET_CART":
     //   return { ...state, cart: action.payload };
 
@@ -84,12 +119,33 @@ export default function App() {
   //   if (cart.length) localStorage.setItem("cart", JSON.stringify(cart));
   // }, [cart]);
 
+  console.log(cart);
+
+  const products = (
+    <div>
+      <TopClotheContainer dispatch={dispatch} />
+      <OtherQuality dispatch={dispatch} />
+      <HighQualityShoes dispatch={dispatch} />
+      <OtherStandard dispatch={dispatch} />
+    </div>
+  );
+
+  console.log(products.props.children);
+
   return (
     <BrowserRouter>
       <div className="app-container">
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Homepage dispatch={dispatch} />} />
+          <Route
+            path="/"
+            element={
+              <Homepage
+                dispatch={dispatch}
+                products={products.props.children}
+              />
+            }
+          />
           <Route path="/product/:name" element={<ProductDetails />} />
           <Route
             path="/cart"

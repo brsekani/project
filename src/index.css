@@ -595,6 +595,14 @@ footer {
   gap: 67px;
 }
 
+.item-summary-div-icon img {
+  cursor: pointer;
+}
+
+.item-summary-div-icon p {
+  cursor: pointer;
+}
+
 .product-cat ul {
   display: flex;
   align-items: center;
@@ -728,6 +736,7 @@ footer {
   font-weight: 600;
   line-height: 150%; /* 27px */
   text-decoration-line: underline;
+  cursor: pointer;
 }
 
 .qty-btn {
@@ -794,6 +803,7 @@ footer {
   margin-left: 401px;
   margin-top: 170px;
   border: none;
+  margin-bottom: 100px;
 }
 
 /*  CUSTOMER DETAILS */

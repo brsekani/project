@@ -1,17 +1,14 @@
-import HighQualityShoes from "./HighQualityShoes";
-import OtherQuality from "./OtherQuality";
-import OtherStandard from "./OtherStandard";
-import TopClotheContainer from "./TopClotheContainer";
+// import { useEffect } from "react";
 
-function CategoriesContainer({ dispatch }) {
-  return (
-    <div>
-      <TopClotheContainer dispatch={dispatch} />
-      <OtherQuality dispatch={dispatch} />
-      <HighQualityShoes dispatch={dispatch} />
-      <OtherStandard dispatch={dispatch} />
-    </div>
-  );
+function CategoriesContainer({ products }) {
+  // useEffect(() => {
+  //   const parentDiv = document.getElementById("div");
+  //   const childrenArray = Array.from(parentDiv.children);
+
+  //   console.log(childrenArray.map((child, i) => console.log(child, i)));
+  // }, []);
+
+  return <div>{products}</div>;
 }
 
 export default CategoriesContainer;
