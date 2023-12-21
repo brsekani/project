@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMyContext } from "../context/MyContext";
 
-function Products({ product, dispatch }) {
+function Products({ product }) {
+  const { dispatch } = useMyContext();
+
   const [isToggle, SetIsToggle] = useState(false);
 
   function handleFavourite(e) {

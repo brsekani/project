@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { AddToCartProduct } from "../components/AddToCartProduct";
+import { useMyContext } from "../context/MyContext";
 
-function AddToCartPage({ cart, dispatch }) {
+function AddToCartPage() {
+  const { cart, dispatch } = useMyContext();
+
   const AllProductChecked = cart.every((item) => item.checked === true);
 
   console.log(AllProductChecked);

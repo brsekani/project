@@ -8,7 +8,7 @@ function TopClotheContainer({ dispatch }) {
   );
 
   return (
-    <div>
+    <div className="products-div">
       <ProductHeader>
         <h1 className="top-clothes-header">Top cloths For You!</h1>
       </ProductHeader>

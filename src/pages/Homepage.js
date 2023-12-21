@@ -7,7 +7,7 @@ import { Nav } from "../components/Nav";
 import Sort from "../components/Sort";
 import { Link } from "react-router-dom";
 
-function Body({ dispatch, products }) {
+function Body({ products }) {
   return (
     <div className="body">
       <Nav>

@@ -7,7 +7,7 @@ function HighQualityShoes({ dispatch }) {
     (product) => product.section === "High Quality Shoes"
   );
   return (
-    <div>
+    <div className="products-div">
       <ProductHeader>
         <h1 className="other-quality-header">High Quality Shoes</h1>
       </ProductHeader>

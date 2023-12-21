@@ -53,9 +53,10 @@ function Sort() {
 
   const handleClick = (event) => {
     if (divRef.current && divRef.current.contains(event.target)) {
-      console.log("inside");
+      // console.log("inside");
+      return;
     } else {
-      console.log("Outside");
+      // console.log("Outside");
       dispatch({ type: "CLICK_OUTSIDE_DIV" });
     }
   };
@@ -78,7 +79,7 @@ function Sort() {
   }, [state.sortByDiv, state.PriceDiv, state.reviewDiv]);
 
   return (
-    <div>
+    <div className="sort-container">
       <div className="sort">
         <button onClick={() => dispatch({ type: "TOOGLE_SORTBY_DIV" })}>
           Sort By
