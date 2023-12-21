@@ -1160,8 +1160,19 @@ footer {
   nav {
   }
 
+  main {
+    padding: 0;
+    height: 650px;
+  }
+
   .main-image {
     display: none;
+  }
+
+  .main-text {
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
   }
 
   .sort-container {
@@ -1187,6 +1198,12 @@ footer {
     width: 100px;
   }
 
+  .other-quality-header,
+  .top-clothes-header {
+    margin: 0 auto;
+    text-align: center;
+  }
+
   /* .products-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1195,4 +1212,85 @@ footer {
     height: 1700px;
     overflow: hidden;
   } */
+
+  /* CHECKOUT */
+  .info-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+
+  .infos-header h1 {
+    font-size: 20px;
+  }
+
+  .customer-div {
+    max-width: 350px;
+  }
+
+  .customer-div input {
+    max-width: 250px;
+  }
+
+  .Shipping-div {
+    max-width: 350px;
+    height: 660px;
+  }
+
+  .Shipping-div input {
+    max-width: 250px;
+  }
+
+  .Shipping-sub-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Billing-div {
+    max-width: 350px;
+    height: 600px;
+  }
+
+  .Billing-div input {
+    max-width: 250px;
+  }
+
+  .Billing-sub-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Shipping-Method-div {
+    max-width: 350px;
+  }
+
+  .Card-Number-div {
+    max-width: 350px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  .Card-Number-div input {
+    max-width: 250px;
+  }
+
+  .Card-sub-input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .second-div button {
+    margin: 0 auto;
+    max-width: 250.201px;
+  }
+
+  .second-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
 }
