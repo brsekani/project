@@ -4,32 +4,13 @@ import { useMyContext } from "../context/MyContext";
 
 // ICONS
 import { FaCartPlus } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 function AddToCartPage() {
-  const { cart, dispatch } = useMyContext();
+  const { cart, dispatch, isRed, totalPrice } = useMyContext();
 
   // h6 changing color
-  const [isRed, setIsRed] = useState(true);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsRed((prevIsRed) => !prevIsRed);
-    }, 2000);
-
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
 
   const AllProductChecked = cart.every((item) => item.checked === true);
-
-  // TOTAL PRICE CAL
-  const totalPrice = cart
-    .map((item) => Number(item.price))
-    .reduce((accumulator, currectValue) => {
-      return accumulator + currectValue;
-    }, 0);
-  console.log(totalPrice);
 
   return (
     <div className="cart-meun-container">
@@ -82,7 +63,7 @@ function AddToCartPage() {
               Your Cart is empty
             </h6>
             <p>Brower our categories and discover our best deals</p>
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: "none" }}>
               <button>Start Shopping</button>
             </Link>
           </div>
@@ -90,7 +71,6 @@ function AddToCartPage() {
           cart.map((product, index) => (
             <AddToCartProduct
               product={product}
-              // checked={index}
               key={index}
               index={index}
               dispatch={dispatch}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export function AddToCartProduct({ product, dispatch, index }) {
+export function AddToCartProduct({ product, dispatch }) {
   const [price, setPrice] = useState(Number(product.price));
   const [quatity, setQuatity] = useState(1);
 

@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { toast } from "react-toastify";
 
 // STEP 1: Create a new context
@@ -96,14 +102,27 @@ const reducer = (state, action) => {
 
 // Step 3: Create a provider component
 const MyProvider = ({ children }) => {
+  const [isRed, setIsRed] = useState(true);
+
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
-  // const totalPrice = cart.reduce((acc, product) => {
-  //   return acc + product.price;
-  // });
-  // console.log(totalPrice);
+  // TOTAL PRICE CAL
+  const totalPrice = cart
+    .map((item) => Number(item.price))
+    .reduce((accumulator, currectValue) => {
+      return accumulator + currectValue;
+    }, 0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsRed((prevIsRed) => !prevIsRed);
+    }, 2000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <MyContext.Provider value={{ cart, dispatch }}>
+    <MyContext.Provider value={{ cart, dispatch, isRed, totalPrice }}>
       {children}
     </MyContext.Provider>
   );
