@@ -390,6 +390,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 300px;
   width: 562px;
   height: 624px;
   background: white;
@@ -1316,7 +1317,18 @@ footer {
   }
 
   .image-container {
-    margin-top: 40px;
+    /* margin: 0 auto; */
+    /* max-width: 200px; */
+    width: 0;
+    margin: 20px;
+  }
+
+  .image-container img {
+    width: 300px;
+  }
+
+  .product-des {
+    /* padding: 20px; */
   }
 
   .product-des a {
