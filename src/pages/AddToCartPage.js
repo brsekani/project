@@ -2,8 +2,24 @@ import { Link } from "react-router-dom";
 import { AddToCartProduct } from "../components/AddToCartProduct";
 import { useMyContext } from "../context/MyContext";
 
+// ICONS
+import { FaCartPlus } from "react-icons/fa";
+import { useEffect, useState } from "react";
+
 function AddToCartPage() {
   const { cart, dispatch } = useMyContext();
+
+  // h6 changing color
+  const [isRed, setIsRed] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsRed((prevIsRed) => !prevIsRed);
+    }, 2000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
 
   const AllProductChecked = cart.every((item) => item.checked === true);
 
@@ -59,15 +75,28 @@ function AddToCartPage() {
       </div>
 
       <div className="item-container">
-        {cart.map((product, index) => (
-          <AddToCartProduct
-            product={product}
-            // checked={index}
-            key={index}
-            index={index}
-            dispatch={dispatch}
-          />
-        ))}
+        {cart.length <= 0 ? (
+          <div className="empty-cart-display">
+            <FaCartPlus size={80} color={isRed ? "red" : "black"} />
+            <h6 style={{ color: isRed ? "red" : "black" }}>
+              Your Cart is empty
+            </h6>
+            <p>Brower our categories and discover our best deals</p>
+            <Link to="/">
+              <button>Start Shopping</button>
+            </Link>
+          </div>
+        ) : (
+          cart.map((product, index) => (
+            <AddToCartProduct
+              product={product}
+              // checked={index}
+              key={index}
+              index={index}
+              dispatch={dispatch}
+            />
+          ))
+        )}
       </div>
       {cart < 1 ? (
         ""

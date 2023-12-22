@@ -71,7 +71,10 @@ function ProductDetails() {
               delivery on Mar 12
             </p>
           </div>
-          <Link to={`/product/${product.id}/checkout`}>
+          <Link
+            to={`/product/${product.id}/checkout`}
+            style={{ textDecoration: "none" }}
+          >
             <button>Buy Now</button>
           </Link>
         </div>
