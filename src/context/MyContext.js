@@ -97,6 +97,10 @@ const reducer = (state, action) => {
 // Step 3: Create a provider component
 const MyProvider = ({ children }) => {
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
+  // const totalPrice = cart.reduce((acc, product) => {
+  //   return acc + product.price;
+  // });
+  // console.log(totalPrice);
 
   return (
     <MyContext.Provider value={{ cart, dispatch }}>

@@ -7,7 +7,13 @@ function AddToCartPage() {
 
   const AllProductChecked = cart.every((item) => item.checked === true);
 
-  console.log(AllProductChecked);
+  // TOTAL PRICE CAL
+  const totalPrice = cart
+    .map((item) => Number(item.price))
+    .reduce((accumulator, currectValue) => {
+      return accumulator + currectValue;
+    }, 0);
+  console.log(totalPrice);
 
   return (
     <div className="cart-meun-container">
@@ -66,9 +72,16 @@ function AddToCartPage() {
       {cart < 1 ? (
         ""
       ) : (
-        <Link to="/cart/checkout">
-          <button className="check-out">Continue to Checkout</button>
-        </Link>
+        <div className="total-check-cont">
+          <div className="total-amout">
+            <p>
+              Total Amount: <span>${totalPrice}</span>
+            </p>
+          </div>
+          <Link to="/cart/checkout">
+            <button className="check-out">Continue to Checkout</button>
+          </Link>
+        </div>
       )}
     </div>
   );
