@@ -1320,15 +1320,24 @@ footer {
     /* margin: 0 auto; */
     /* max-width: 200px; */
     width: 0;
+    height: 400px;
     margin: 20px;
+    box-shadow: none;
   }
 
   .image-container img {
     width: 300px;
   }
 
-  .product-des {
-    /* padding: 20px; */
+  .product-des p,
+  .product-des div,
+  .product-des a button {
+    margin: 20px;
+  }
+
+  .product-des h1 {
+    margin: 20px;
+    font-size: 40px;
   }
 
   .product-des a {
@@ -1340,6 +1349,7 @@ footer {
 
   .product-des button {
     margin-bottom: 50px;
+    width: 300px;
   }
 
   /* ADD TO CART PAGE */
