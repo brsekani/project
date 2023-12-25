@@ -39,8 +39,6 @@ export default function App() {
   //   if (cart.length) localStorage.setItem("cart", JSON.stringify(cart));
   // }, [cart]);
 
-  console.log(cart);
-
   const products = (
     <div>
       <TopClotheContainer />
@@ -49,8 +47,6 @@ export default function App() {
       <OtherStandard />
     </div>
   );
-
-  console.log(products.props.children);
 
   return (
     <BrowserRouter>

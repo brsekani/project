@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 
 export function AddToCartProduct({ product, dispatch }) {
-  const [price, setPrice] = useState(Number(product.price));
-  const [quatity, setQuatity] = useState(1);
+  // const [quatity, setQuatity] = useState(1);
+  function roundToTwoDecimalPlaces(number) {
+    return Math.round(number * 100) / 100;
+  }
 
   if (product === null) return;
 
   function handleAddQuatity() {
-    setPrice((price) => price + price);
-    setQuatity((q) => q + 1);
+    dispatch({ type: "INCREMENT_QUANTITY", payload: product.id });
   }
 
   function handleRemoveQuatity() {
-    if (quatity > 1) {
-      setPrice((price) => price / 2);
-      setQuatity((q) => q - 1);
-    }
+    dispatch({ type: "DECREMENT_QUANTITY", payload: product.id });
   }
 
   return (
@@ -57,13 +55,16 @@ export function AddToCartProduct({ product, dispatch }) {
             <button className="add-item" onClick={handleRemoveQuatity}>
               -
             </button>
-            <p>{quatity}</p>
+            <p>{product.quantity}</p>
             <button className="remove-item" onClick={handleAddQuatity}>
               +
             </button>
           </div>
           <div className="total-price">
-            $<span>{price}</span>
+            $
+            <span>
+              {roundToTwoDecimalPlaces(product.price * product.quantity)}
+            </span>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ function Products({ product }) {
         <div className="product-image">
           <img
             src={product.image}
-            alt="Denim Jacket"
+            alt={product.name}
             // onClick={(e) => HandleOnClickBoth(e, product.id)}
           />
         </div>

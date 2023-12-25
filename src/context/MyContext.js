@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useReducer,
@@ -48,7 +49,7 @@ const reducer = (state, action) => {
         });
         return {
           ...state,
-          cart: [...state.cart, action.payload],
+          cart: [...state.cart, { ...action.payload, quantity: 1 }],
         };
       }
 
@@ -60,6 +61,28 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: updatedCart,
+      };
+
+    case "INCREMENT_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+
+    case "DECREMENT_QUANTITY":
+      // if (state.cart.map((item) => item.quantity <= 1)) return state;
+
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
       };
 
     case "TOGGLE_CHECK_PRODUCT":
@@ -105,21 +128,22 @@ const MyProvider = ({ children }) => {
   const [isRed, setIsRed] = useState(true);
 
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
+
   // TOTAL PRICE CAL
-  const totalPrice = cart
-    .map((item) => Number(item.price))
-    .reduce((accumulator, currectValue) => {
-      return accumulator + currectValue;
-    }, 0);
+  const totalPrice = cart.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
+  const toggleIsRed = useCallback(() => {
+    setIsRed((prevIsRed) => !prevIsRed);
+  }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsRed((prevIsRed) => !prevIsRed);
-    }, 2000);
+    const intervalId = setInterval(() => toggleIsRed, 2000);
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []);
+  }, [toggleIsRed]);
 
   return (
     <MyContext.Provider value={{ cart, dispatch, isRed, totalPrice }}>

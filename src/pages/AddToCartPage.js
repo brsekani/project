@@ -8,6 +8,10 @@ import { FaCartPlus } from "react-icons/fa";
 function AddToCartPage() {
   const { cart, dispatch, isRed, totalPrice } = useMyContext();
 
+  function roundToTwoDecimalPlaces(number) {
+    return Math.round(number * 100) / 100;
+  }
+
   // h6 changing color
 
   const AllProductChecked = cart.every((item) => item.checked === true);
@@ -84,10 +88,10 @@ function AddToCartPage() {
         <div className="total-check-cont">
           <div className="total-amout">
             <p>
-              Total Amount: <span>${totalPrice}</span>
+              Total Amount: <span>${roundToTwoDecimalPlaces(totalPrice)}</span>
             </p>
           </div>
-          <Link to="/cart/checkout">
+          <Link to="/cart/checkout" style={{ textDecoration: "none" }}>
             <button className="check-out">Continue to Checkout</button>
           </Link>
         </div>

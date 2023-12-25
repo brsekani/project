@@ -808,6 +808,7 @@ footer {
   margin-top: 170px;
   border: none;
   margin-bottom: 100px;
+  cursor: pointer;
 }
 
 /*  CUSTOMER DETAILS */
@@ -1506,6 +1507,7 @@ footer {
     justify-content: center;
     width: 300px;
     margin: 0 auto;
+    cursor: pointer;
   }
 
   .total-amout {
