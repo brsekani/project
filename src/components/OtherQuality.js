@@ -1,9 +1,11 @@
-import data from "../Data.json";
+import { useMyContext } from "../context/MyContext";
 import { ProductHeader } from "./ProductHeader";
 import Products from "./Products";
 
 function OtherQuality() {
-  const topcloths = data.products.filter(
+  const { data } = useMyContext();
+
+  const OtherQuality = data.products.filter(
     (product) => product.section === "Other Quality"
   );
 
@@ -13,7 +15,7 @@ function OtherQuality() {
         <h1 className="other-quality-header">Other Quality</h1>
       </ProductHeader>
       <div className="products-container">
-        {topcloths.map((product, index) => (
+        {OtherQuality.map((product, index) => (
           <Products key={index} product={product} />
         ))}
       </div>

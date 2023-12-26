@@ -1,14 +1,11 @@
 // import { useEffect } from "react";
 
-function CategoriesContainer({ products }) {
-  // useEffect(() => {
-  //   const parentDiv = document.getElementById("div");
-  //   const childrenArray = Array.from(parentDiv.children);
+import { useMyContext } from "../context/MyContext";
 
-  //   console.log(childrenArray.map((child, i) => console.log(child, i)));
-  // }, []);
+function CategoriesContainer() {
+  const { componentOrder } = useMyContext();
 
-  return <div>{products}</div>;
+  return <div>{componentOrder.map((component) => component)}</div>;
 }
 
 export default CategoriesContainer;

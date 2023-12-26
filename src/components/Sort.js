@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef } from "react";
 import { SortMeun } from "./SortMeun";
+import { useMyContext } from "../context/MyContext";
 
 const initailState = {
   sortByDiv: false,
@@ -50,6 +51,8 @@ function Sort() {
   const [state, dispatch] = useReducer(reducer, initailState);
 
   const divRef = useRef(null);
+
+  const { moveComponentToFront } = useMyContext();
 
   const handleClick = (event) => {
     if (divRef.current && divRef.current.contains(event.target)) {
@@ -121,10 +124,38 @@ function Sort() {
               <h1>Sort By</h1>
               <hr></hr>
               <ul className="sort-meun-list">
-                <li>Top Cloths</li>
-                <li>Other Quality</li>
-                <li>High Quality Shoes</li>
-                <li>Other Standard</li>
+                <li
+                  onClick={() => {
+                    moveComponentToFront(0);
+                    dispatch({ type: "TOOGLE_SORTBY_DIV" });
+                  }}
+                >
+                  Top Cloths
+                </li>
+                <li
+                  onClick={() => {
+                    moveComponentToFront(1);
+                    dispatch({ type: "TOOGLE_SORTBY_DIV" });
+                  }}
+                >
+                  Other Quality
+                </li>
+                <li
+                  onClick={() => {
+                    moveComponentToFront(2);
+                    dispatch({ type: "TOOGLE_SORTBY_DIV" });
+                  }}
+                >
+                  High Quality Shoes
+                </li>
+                <li
+                  onClick={() => {
+                    moveComponentToFront(3);
+                    dispatch({ type: "TOOGLE_SORTBY_DIV" });
+                  }}
+                >
+                  Other Standard
+                </li>
               </ul>
             </div>
             ;

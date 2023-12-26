@@ -166,7 +166,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 15px;
   margin-top: 35px;
   margin-left: 20px;

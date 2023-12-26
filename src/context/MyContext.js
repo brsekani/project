@@ -6,7 +6,13 @@ import {
   useReducer,
   useState,
 } from "react";
+import Data from "../Data.json";
 import { toast } from "react-toastify";
+
+import HighQualityShoes from "../components/HighQualityShoes";
+import OtherQuality from "../components/OtherQuality";
+import OtherStandard from "../components/OtherStandard";
+import TopClotheContainer from "../components/TopClotheContainer";
 
 // STEP 1: Create a new context
 const MyContext = createContext();
@@ -129,6 +135,8 @@ const MyProvider = ({ children }) => {
 
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
 
+  const data = Data;
+
   // TOTAL PRICE CAL
   const totalPrice = cart.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -145,8 +153,50 @@ const MyProvider = ({ children }) => {
     return () => clearInterval(intervalId);
   }, [toggleIsRed]);
 
+  // SORTED BY NAME LOGIC
+  const defaultOrder = [
+    <TopClotheContainer key="TopClotheContainer" />,
+    <OtherQuality key="OtherQuality" />,
+    <HighQualityShoes key="HighQualityShoes" />,
+    <OtherStandard key="OtherStandard" />,
+  ];
+
+  const [componentOrder, setComponentOrder] = useState(defaultOrder);
+
+  const moveComponentToFront = (num) => {
+    const newOrder = [...componentOrder];
+
+    // Find the index of the component specified by num in the current order
+    const componentIndex = newOrder.findIndex(
+      (component) => component.key === defaultOrder[num].key
+    );
+
+    // If the component is not already at the top, move it to the top
+    if (componentIndex !== 0) {
+      const [movedComponent] = newOrder.splice(componentIndex, 1);
+      newOrder.unshift(movedComponent);
+    }
+
+    // If moving TopClotheContainer, and it's already at the top, do nothing
+    if (num === 0 && componentIndex === 0) {
+      return;
+    }
+
+    setComponentOrder(newOrder);
+  };
+
   return (
-    <MyContext.Provider value={{ cart, dispatch, isRed, totalPrice }}>
+    <MyContext.Provider
+      value={{
+        cart,
+        dispatch,
+        isRed,
+        totalPrice,
+        componentOrder,
+        moveComponentToFront,
+        data,
+      }}
+    >
       {children}
     </MyContext.Provider>
   );
