@@ -52,7 +52,7 @@ function Sort() {
 
   const divRef = useRef(null);
 
-  const { moveComponentToFront } = useMyContext();
+  const { moveComponentToFront, handleFilterClick, data } = useMyContext();
 
   const handleClick = (event) => {
     if (divRef.current && divRef.current.contains(event.target)) {
@@ -173,10 +173,38 @@ function Sort() {
               <h1>Prices Range</h1>
               <hr></hr>
               <ul className="sort-meun-list">
-                <l1>$200-$500</l1>
-                <l1>$500-$750</l1>
-                <l1>$750-$1000</l1>
-                <l1>$1000-$1500</l1>
+                <l1
+                  onClick={() => {
+                    handleFilterClick(200, 500);
+                    dispatch({ type: "TOOGLE_PRICEBY_DIV" });
+                  }}
+                >
+                  $200-$500
+                </l1>
+                <l1
+                  onClick={() => {
+                    handleFilterClick(500, 750);
+                    dispatch({ type: "TOOGLE_PRICEBY_DIV" });
+                  }}
+                >
+                  $500-$750
+                </l1>
+                <l1
+                  onClick={() => {
+                    handleFilterClick(750, 1000);
+                    dispatch({ type: "TOOGLE_PRICEBY_DIV" });
+                  }}
+                >
+                  $750-$1000
+                </l1>
+                <l1
+                  onClick={() => {
+                    handleFilterClick(1000, 1500);
+                    dispatch({ type: "TOOGLE_PRICEBY_DIV" });
+                  }}
+                >
+                  $1000-$1500
+                </l1>
               </ul>
             </div>
           </SortMeun>

@@ -5,9 +5,12 @@ import Products from "./Products";
 function HighQualityShoes({ dispatch }) {
   const { data } = useMyContext();
 
-  const HighQualityShoes = data.products.filter(
+  const HighQualityShoes = data.filter(
     (product) => product.section === "High Quality Shoes"
   );
+
+  if (HighQualityShoes.length <= 0) return;
+
   return (
     <div className="products-div">
       <ProductHeader>

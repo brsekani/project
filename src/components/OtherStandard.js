@@ -5,9 +5,11 @@ import Products from "./Products";
 function OtherStandard() {
   const { data } = useMyContext();
 
-  const OtherStandard = data.products.filter(
+  const OtherStandard = data.filter(
     (product) => product.section === "Other Standard"
   );
+
+  if (OtherStandard.length <= 0) return;
   return (
     <div className="products-div">
       <ProductHeader>

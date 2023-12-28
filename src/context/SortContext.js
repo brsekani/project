@@ -1,55 +1,58 @@
 // Step 1: Create a new context
+import data from "../Data.json";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-} from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const SortContext = createContext();
 
 // Step 2: Define the initail state and the function
 
-const initailState = {
-  sortByDiv: false,
-  PriceDiv: false,
-  reviewDiv: false,
-};
+const initailState = data;
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "TOOGLE_SORTBY_DIV":
+    case "SORT_PRICE_200-500":
+      const sortedOne = data.products.filter(
+        (product) =>
+          product.price > action.payload.minPrice &&
+          product.price < action.payload.maxPrice
+      );
       return {
         ...state,
-        sortByDiv: !state.sortByDiv,
-        PriceDiv: !state.sortByDiv ? false : "",
-        reviewDiv: !state.sortByDiv ? false : "",
+        data: sortedOne,
       };
 
-    case "TOOGLE_PRICEBY_DIV":
+    case "SORT_PRICE_500-750":
+      const sortedTwo = data.products.filter(
+        (product) =>
+          product.price > action.payload.minPrice &&
+          product.price < action.payload.maxPrice
+      );
       return {
         ...state,
-        PriceDiv: !state.PriceDiv,
-        sortByDiv: !state.PriceDiv ? false : "",
-        reviewDiv: !state.PriceDiv ? false : "",
+        data: sortedTwo,
       };
 
-    case "TOOGLE_REVIEW":
+    case "SORT_PRICE_750-1000":
+      const sortedThree = data.products.filter(
+        (product) =>
+          product.price > action.payload.minPrice &&
+          product.price < action.payload.maxPrice
+      );
       return {
         ...state,
-        reviewDiv: !state.reviewDiv,
-        sortByDiv: !state.reviewDiv ? false : "",
-        PriceDiv: !state.reviewDiv ? false : "",
+        data: sortedThree,
       };
 
-    case "CLICK_OUTSIDE_DIV":
+    case "SORT_PRICE_1000-1500":
+      const sortedFour = data.products.filter(
+        (product) =>
+          product.price > action.payload.minPrice &&
+          product.price < action.payload.maxPrice
+      );
       return {
         ...state,
-        sortByDiv: false,
-        PriceDiv: false,
-        reviewDiv: false,
+        data: sortedFour,
       };
 
     default:
@@ -61,38 +64,9 @@ const reducer = (state, action) => {
 const SortProvider = ({ Children }) => {
   const [state, dispatch] = useReducer(reducer, initailState);
 
-  const divRef = useRef(null);
-
-  const handleClick = (event) => {
-    if (divRef.current && divRef.current.contains(event.target)) {
-      // console.log("inside");
-      return;
-    } else {
-      // console.log("Outside");
-      dispatch({ type: "CLICK_OUTSIDE_DIV" });
-    }
-  };
-
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        (state.sortByDiv || state.PriceDiv || state.reviewDiv) &&
-        !event.target.closest("button")
-      ) {
-        handleClick(event);
-      }
-    };
-
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, [state.sortByDiv, state.PriceDiv, state.reviewDiv]);
-
   return (
-    <SortContext.Provider value={{ dispatch, state, divRef }}>
-      {Children}
+    <SortContext.Provider value={{ dispatch, state }}>
+      (Children)
     </SortContext.Provider>
   );
 };

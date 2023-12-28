@@ -12,14 +12,7 @@ const ProductDetails = lazy(() => import("./pages/ProductDetails"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 export default function App() {
-  // const products = (
-  //   <div>
-  //     <TopClotheContainer />
-  //     <OtherQuality />
-  //     <HighQualityShoes />
-  //     <OtherStandard />
-  //   </div>
-  // );
+
 
   return (
     <BrowserRouter>

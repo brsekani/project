@@ -5,9 +5,11 @@ import Products from "./Products";
 function OtherQuality() {
   const { data } = useMyContext();
 
-  const OtherQuality = data.products.filter(
+  const OtherQuality = data.filter(
     (product) => product.section === "Other Quality"
   );
+
+  if (OtherQuality.length <= 0) return;
 
   return (
     <div className="products-div">

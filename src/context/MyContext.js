@@ -14,6 +14,8 @@ import OtherQuality from "../components/OtherQuality";
 import OtherStandard from "../components/OtherStandard";
 import TopClotheContainer from "../components/TopClotheContainer";
 
+const originalData = Data.products;
+
 // STEP 1: Create a new context
 const MyContext = createContext();
 
@@ -135,8 +137,6 @@ const MyProvider = ({ children }) => {
 
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
 
-  const data = Data;
-
   // TOTAL PRICE CAL
   const totalPrice = cart.reduce((total, item) => {
     return total + item.price * item.quantity;
@@ -185,6 +185,130 @@ const MyProvider = ({ children }) => {
     setComponentOrder(newOrder);
   };
 
+  // ! Working on it
+
+  // const handleFilterClick = (
+  //   cart,
+  //   setCart,
+  //   targetSection,
+  //   minPrice,
+  //   maxPrice
+  // ) => {
+  //   // Check if the current section is already applied
+  //   const isSectionApplied =
+  //     cart.length > 0 &&
+  //     cart[0].section === targetSection &&
+  //     cart.every(
+  //       (product) =>
+  //         Number(product.price) > minPrice && Number(product.price) < maxPrice
+  //     );
+
+  //   // Toggle back to normal if the section is already applied
+  //   if (isSectionApplied) {
+  //     setCart(
+  //       data.products.filter(
+  //         (product) => product.section === "Top cloths For You"
+  //       )
+  //     );
+  //   } else {
+  //     // Apply the filter if the section is not applied
+  //     const result = filterProductsBySectionAndPrice(
+  //       data,
+  //       targetSection,
+  //       minPrice,
+  //       maxPrice
+  //     );
+  //     setCart(result);
+  //   }
+  // };
+
+  // function filterProductsBySectionAndPrice(
+  //   data,
+  //   targetSection,
+  //   minPrice,
+  //   maxPrice
+  // ) {
+  //   return data.products.filter((product) => {
+  //     const { section, price } = product;
+  //     const numericPrice = Number(price);
+
+  //     return (
+  //       section === targetSection &&
+  //       numericPrice > minPrice &&
+  //       numericPrice < maxPrice
+  //     );
+  //   });
+  // }
+
+  // const [data, setData] = useState(Data.products);
+  // console.log(data);
+
+  // function handleFilterClick(minPrice, maxPrice, data) {
+  //   // console.log(data.products, maxPrice, minPrice);
+  //   const filteredData = data.filter(
+  //     (product) => product.price > minPrice && product.price < maxPrice
+  //   );
+
+  //   setData(filteredData);
+
+  //   console.log(filteredData);
+
+  //   // return filteredData;
+  // }
+
+  // const [data, setData] = useState(originalData);
+
+  // function handleFilterClick(minPrice, maxPrice) {
+  //   const filtersChanged = minPrice !== null || maxPrice !== null;
+
+  //   if (filtersChanged) {
+  //     const filteredData = originalData.filter(
+  //       (product) => product.price > minPrice && product.price < maxPrice
+  //     );
+
+  //     setData(filteredData);
+  //     console.log(filteredData);
+  //   } else {
+  //     // Reset to the original state
+  //     setData(originalData);
+  //     console.log(originalData);
+  //   }
+  // }
+
+  const [data, setData] = useState(originalData);
+  const [minPrice, setMinPrice] = useState(null);
+  const [maxPrice, setMaxPrice] = useState(null);
+  const [filtersApplied, setFiltersApplied] = useState(false);
+
+  useEffect(() => {
+    // Apply filters when minPrice or maxPrice change
+    if (minPrice !== null || maxPrice !== null) {
+      const filteredData = originalData.filter(
+        (product) =>
+          (minPrice === null || product.price > minPrice) &&
+          (maxPrice === null || product.price < maxPrice)
+      );
+      setData(filteredData);
+      console.log(filteredData);
+    } else {
+      // Reset to the original state
+      setData(originalData);
+      console.log(originalData);
+    }
+  }, [minPrice, maxPrice]);
+
+  const handleFilterClick = (clickedMinPrice, clickedMaxPrice) => {
+    if (clickedMinPrice === minPrice && clickedMaxPrice === maxPrice) {
+      // Reset to the original state
+      setMinPrice(null);
+      setMaxPrice(null);
+    } else {
+      // Apply filters on the next render (useEffect)
+      setMinPrice(clickedMinPrice);
+      setMaxPrice(clickedMaxPrice);
+    }
+  };
+
   return (
     <MyContext.Provider
       value={{
@@ -195,6 +319,7 @@ const MyProvider = ({ children }) => {
         componentOrder,
         moveComponentToFront,
         data,
+        handleFilterClick,
       }}
     >
       {children}
