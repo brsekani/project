@@ -8,6 +8,7 @@ import {
 } from "react";
 import Data from "../Data.json";
 import { toast } from "react-toastify";
+import { useSpring, animated } from "react-spring";
 
 import HighQualityShoes from "../components/HighQualityShoes";
 import OtherQuality from "../components/OtherQuality";
@@ -123,8 +124,8 @@ const reducer = (state, action) => {
         cart: checkedAllItems,
       };
 
-    // case "SET_CART":
-    //   return { ...state, cart: action.payload };
+    case "SET_CART":
+      return { ...state, cart: action.payload };
 
     default:
       return state;
@@ -136,6 +137,19 @@ const MyProvider = ({ children }) => {
   const [isRed, setIsRed] = useState(true);
 
   const [{ cart }, dispatch] = useReducer(reducer, initailstate);
+
+  // Load cart data from local storage on component mount
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      dispatch({ type: "SET_CART", payload: JSON.parse(storedCart) });
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log("Updating local storage with new cart data:", cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // TOTAL PRICE CAL
   const totalPrice = cart.reduce((total, item) => {
@@ -185,100 +199,9 @@ const MyProvider = ({ children }) => {
     setComponentOrder(newOrder);
   };
 
-  // ! Working on it
-
-  // const handleFilterClick = (
-  //   cart,
-  //   setCart,
-  //   targetSection,
-  //   minPrice,
-  //   maxPrice
-  // ) => {
-  //   // Check if the current section is already applied
-  //   const isSectionApplied =
-  //     cart.length > 0 &&
-  //     cart[0].section === targetSection &&
-  //     cart.every(
-  //       (product) =>
-  //         Number(product.price) > minPrice && Number(product.price) < maxPrice
-  //     );
-
-  //   // Toggle back to normal if the section is already applied
-  //   if (isSectionApplied) {
-  //     setCart(
-  //       data.products.filter(
-  //         (product) => product.section === "Top cloths For You"
-  //       )
-  //     );
-  //   } else {
-  //     // Apply the filter if the section is not applied
-  //     const result = filterProductsBySectionAndPrice(
-  //       data,
-  //       targetSection,
-  //       minPrice,
-  //       maxPrice
-  //     );
-  //     setCart(result);
-  //   }
-  // };
-
-  // function filterProductsBySectionAndPrice(
-  //   data,
-  //   targetSection,
-  //   minPrice,
-  //   maxPrice
-  // ) {
-  //   return data.products.filter((product) => {
-  //     const { section, price } = product;
-  //     const numericPrice = Number(price);
-
-  //     return (
-  //       section === targetSection &&
-  //       numericPrice > minPrice &&
-  //       numericPrice < maxPrice
-  //     );
-  //   });
-  // }
-
-  // const [data, setData] = useState(Data.products);
-  // console.log(data);
-
-  // function handleFilterClick(minPrice, maxPrice, data) {
-  //   // console.log(data.products, maxPrice, minPrice);
-  //   const filteredData = data.filter(
-  //     (product) => product.price > minPrice && product.price < maxPrice
-  //   );
-
-  //   setData(filteredData);
-
-  //   console.log(filteredData);
-
-  //   // return filteredData;
-  // }
-
-  // const [data, setData] = useState(originalData);
-
-  // function handleFilterClick(minPrice, maxPrice) {
-  //   const filtersChanged = minPrice !== null || maxPrice !== null;
-
-  //   if (filtersChanged) {
-  //     const filteredData = originalData.filter(
-  //       (product) => product.price > minPrice && product.price < maxPrice
-  //     );
-
-  //     setData(filteredData);
-  //     console.log(filteredData);
-  //   } else {
-  //     // Reset to the original state
-  //     setData(originalData);
-  //     console.log(originalData);
-  //   }
-  // }
-
   const [data, setData] = useState(originalData);
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const [filtersApplied, setFiltersApplied] = useState(false);
 
   useEffect(() => {
     // Apply filters when minPrice or maxPrice change

@@ -43,6 +43,7 @@ function AddToCartPage() {
                 id="checkbox"
                 checked={cart.length && AllProductChecked}
                 onClick={() => dispatch({ type: "CHECKED_ALL_ITEMS" })}
+                readOnly
               />
               <label>All</label>
             </form>
