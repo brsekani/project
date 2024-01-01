@@ -52,7 +52,7 @@ function Sort() {
 
   const divRef = useRef(null);
 
-  const { moveComponentToFront, handleFilterClick, data } = useMyContext();
+  const { moveComponentToFront, handleFilterClick } = useMyContext();
 
   const handleClick = (event) => {
     if (divRef.current && divRef.current.contains(event.target)) {

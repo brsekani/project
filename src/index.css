@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700&family=Poppins:wght@600&family=Scope+One&display=swap");
 
-/* font-family: 'Inter', sans-serif;
+/* c
 font-family: 'Montserrat', sans-serif;
-font-family: 'Poppins', sans-serif;
+mily: 'Poppins', sans-serif;
 font-family: 'Scope One', serif; */
 
 * {
@@ -860,14 +860,14 @@ footer {
   box-shadow: 0px 3.32745px 13.3098px 0px rgba(0, 0, 0, 0.2);
 }
 
-.customer-input form {
+.customer-input div {
   display: flex;
   flex-direction: column;
   gap: 11px;
   margin: 32px 45px 30px 45px;
 }
 
-.customer-input form label {
+.customer-input div label {
   color: #000;
   font-family: Montserrat;
   font-size: 12.603px;
@@ -877,7 +877,7 @@ footer {
   letter-spacing: 1.575px;
 }
 
-.customer-input form input {
+.customer-input div input {
   width: 480.484px;
   height: 36.602px;
   flex-shrink: 0;
@@ -888,7 +888,7 @@ footer {
 
 .Shipping-div {
   width: 570px;
-  height: 471px;
+  height: 530px;
   box-shadow: 0px 3.32745px 13.3098px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -898,7 +898,7 @@ footer {
   margin: 32px 45px 0px 44px;
 }
 
-.Shipping-input form {
+.Shipping-input {
   display: flex;
   flex-direction: column;
   color: #000;
@@ -910,7 +910,7 @@ footer {
   letter-spacing: 1.575px;
 }
 
-.Shipping-input form input {
+.Shipping-input div input {
   width: 480.484px;
   height: 36.602px;
   flex-shrink: 0;
@@ -926,7 +926,7 @@ footer {
   margin-top: 20px;
 }
 
-.Shipping-sub-input form input {
+.Shipping-sub-input div input {
   width: 145.667px;
   height: 38.203px;
   flex-shrink: 0;
@@ -969,7 +969,7 @@ footer {
   margin: 32px 45px 0px 44px;
 }
 
-.Billing-input form {
+.Billing-input {
   display: flex;
   flex-direction: column;
   color: #000;
@@ -981,7 +981,7 @@ footer {
   letter-spacing: 1.575px;
 }
 
-.Billing-input form input {
+.Billing-input div input {
   width: 480.484px;
   height: 36.602px;
   flex-shrink: 0;
@@ -997,7 +997,7 @@ footer {
   margin-top: 20px;
 }
 
-.Billing-sub-input form input {
+.Billing-sub-input div input {
   width: 145.667px;
   height: 38.203px;
   flex-shrink: 0;
@@ -1031,13 +1031,13 @@ footer {
   letter-spacing: 0.649px;
 }
 
-.radio-input form {
+.radio-input div {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 
-.radio-input form label {
+.radio-input div label {
   color: #000;
   font-family: Montserrat;
   font-size: 14.417px;
@@ -1062,7 +1062,7 @@ footer {
   margin: 23px 40px 27px 48px;
 }
 
-.Card-Number-input form {
+.Card-Number-input {
   display: flex;
   flex-direction: column;
 }
@@ -1320,6 +1320,7 @@ footer {
   .Shipping-sub-input {
     display: flex;
     flex-direction: column;
+    width: 150px;
   }
 
   .Billing-div {

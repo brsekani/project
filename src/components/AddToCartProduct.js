@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
 export function AddToCartProduct({ product, dispatch }) {
-  // const [quatity, setQuatity] = useState(1);
   function roundToTwoDecimalPlaces(number) {
     return Math.round(number * 100) / 100;
   }

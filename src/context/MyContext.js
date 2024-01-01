@@ -8,7 +8,6 @@ import {
 } from "react";
 import Data from "../Data.json";
 import { toast } from "react-toastify";
-import { useSpring, animated } from "react-spring";
 
 import HighQualityShoes from "../components/HighQualityShoes";
 import OtherQuality from "../components/OtherQuality";
