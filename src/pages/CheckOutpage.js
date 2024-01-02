@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Nav } from "../components/Nav";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 function CheckOutpage() {
+  const location = useLocation();
+
+  // console.log(location);
+
   // Form validation
   const [formData, setFormData] = useState({
     email: "",
@@ -22,6 +26,93 @@ function CheckOutpage() {
 
   const [errors, setErrors] = useState({});
   console.log(errors);
+
+  // Create res for each input field
+  const EmailRef = useRef(null);
+  const ShippingFullNameRef = useRef(null);
+  const ShippingStreetAddressRef = useRef(null);
+  const CityRef = useRef(null);
+  const StateProvinceRef = useRef(null);
+  const ZipPostalCodeRef = useRef(null);
+  const ShippingCountryRef = useRef(null);
+  const CardNumberRef = useRef(null);
+  const ExpirationDateRef = useRef(null);
+  const SecurityCodeRef = useRef(null);
+  const BillingFullNameRef = useRef(null);
+  const BillingStreetAddressRef = useRef(null);
+  const BillingCountryRef = useRef(null);
+
+  const scrollToFirstError = (errors) => {
+    const errorFields = [
+      "email",
+      "shippingFullName",
+      "ShippingStreetAddress",
+      "city",
+      "stateProvince",
+      "zipPostalCode",
+      "shippingCountry",
+      "cardNumber",
+      "expirationDate",
+      "securityCode",
+      "billingFullName",
+      "billingStreetAddress",
+      "billingCountry",
+    ];
+
+    for (const field of errorFields) {
+      if (errors[field]) {
+        switch (field) {
+          case "email":
+            EmailRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "shippingFullName":
+            ShippingFullNameRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "ShippingStreetAddress":
+            ShippingStreetAddressRef.current.scrollIntoView({
+              behavior: "smooth",
+            });
+            break;
+          case "city":
+            CityRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "stateProvince":
+            StateProvinceRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "zipPostalCode":
+            ZipPostalCodeRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "shippingCountry":
+            ShippingCountryRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "cardNumber":
+            CardNumberRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "expirationDate":
+            ExpirationDateRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "securityCode":
+            SecurityCodeRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "billingFullName":
+            BillingFullNameRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          case "billingStreetAddress":
+            BillingStreetAddressRef.current.scrollIntoView({
+              behavior: "smooth",
+            });
+            break;
+          case "billingCountry":
+            BillingCountryRef.current.scrollIntoView({ behavior: "smooth" });
+            break;
+          default:
+            // Default case if none of the conditions match
+            break;
+        }
+        break; // Stop the loop when the first error is found
+      }
+    }
+  };
 
   const validateForm = () => {
     let isValid = true;
@@ -103,10 +194,11 @@ function CheckOutpage() {
     if (formData.expirationDate.trim() === "") {
       newErrors.expirationDate = "Expiration date is required";
       isValid = false;
-    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expirationDate)) {
-      newErrors.expirationDate = "Invalid expiration date format (MM/YY)";
-      isValid = false;
     }
+    //  else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.expirationDate)) {
+    //   newErrors.expirationDate = "Invalid expiration date format (MM/YY)";
+    //   isValid = false;
+    // }
 
     // Check for security code
     if (formData.securityCode.trim() === "") {
@@ -117,13 +209,39 @@ function CheckOutpage() {
       isValid = false;
     }
 
+    // scroll to the first input field with an error
+    // if (newErrors.email)
+    //   EmailRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.shippingFullName)
+    //   ShippingFullNameRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.ShippingStreetAddress)
+    //   ShippingStreetAddressRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.city)
+    //   CityRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.stateProvince)
+    //   StateProvinceRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.zipPostalCode)
+    //   ZipPostalCodeRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.shippingCountry)
+    //   ShippingCountryRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.cardNumber)
+    //   CardNumberRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.expirationDate)
+    //   ExpirationDateRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.securityCode)
+    //   SecurityCodeRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.billingFullName)
+    //   BillingFullNameRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.billingStreetAddress)
+    //   BillingStreetAddressRef.current.scrollIntoView({ behavior: "smooth" });
+    // else if (newErrors.billingCountry)
+    //   BillingCountryRef.current.scrollIntoView({ behavior: "smooth" });
+
     setErrors(newErrors);
+    scrollToFirstError(newErrors);
+
     return isValid;
   };
-
-  const location = useLocation();
-
-  // console.log(location);
 
   function handlesubmit(e) {
     e.preventDefault();
@@ -175,6 +293,7 @@ function CheckOutpage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
+                      ref={EmailRef}
                     />
                     {errors.email && (
                       <span
@@ -199,13 +318,14 @@ function CheckOutpage() {
                 </div>
                 <hr />
                 <div className="Shipping-input">
-                  <div className="Full-Name-input">
+                  <div className="Full-Name-input" useRef={ShippingFullNameRef}>
                     <label>Full Name *</label>
                     <input
                       type="text"
                       name="shippingFullName"
                       value={formData.shippingFullName}
                       onChange={handleChange}
+                      ref={ShippingFullNameRef}
                     />
                     {errors.shippingFullName && (
                       <span
@@ -227,6 +347,7 @@ function CheckOutpage() {
                       name="ShippingStreetAddress"
                       value={formData.ShippingStreetAddress}
                       onChange={handleChange}
+                      ref={ShippingStreetAddressRef}
                     />
                     <input type="text" />
                     {errors.ShippingStreetAddress && (
@@ -250,6 +371,7 @@ function CheckOutpage() {
                         name="city"
                         value={formData.city}
                         onChange={handleChange}
+                        ref={CityRef}
                       />
                       {errors.city && (
                         <span
@@ -271,6 +393,7 @@ function CheckOutpage() {
                         name="stateProvince"
                         value={formData.stateProvince}
                         onChange={handleChange}
+                        ref={StateProvinceRef}
                       />
                       {errors.stateProvince && (
                         <span
@@ -292,6 +415,7 @@ function CheckOutpage() {
                         name="zipPostalCode"
                         value={formData.zipPostalCode}
                         onChange={handleChange}
+                        ref={ZipPostalCodeRef}
                       />
                       {errors.zipPostalCode && (
                         <span
@@ -313,6 +437,7 @@ function CheckOutpage() {
                       type="text"
                       placeholder="United States"
                       name="shippingCountry"
+                      ref={ShippingCountryRef}
                       value={formData.shippingCountry}
                       onChange={handleChange}
                     />
@@ -346,6 +471,7 @@ function CheckOutpage() {
                       name="billingFullName"
                       value={formData.billingFullName}
                       onChange={handleChange}
+                      ref={BillingFullNameRef}
                     />
                     {errors.billingFullName && (
                       <span
@@ -367,6 +493,7 @@ function CheckOutpage() {
                       name="billingStreetAddress"
                       value={formData.billingStreetAddress}
                       onChange={handleChange}
+                      ref={BillingStreetAddressRef}
                     />
                     <input type="text" />
                     {errors.billingStreetAddress && (
@@ -401,6 +528,7 @@ function CheckOutpage() {
                       name="billingCountry"
                       value={formData.billingCountry}
                       onChange={handleChange}
+                      ref={BillingCountryRef}
                     />
                     {errors.billingCountry && (
                       <span
@@ -449,6 +577,7 @@ function CheckOutpage() {
                       name="cardNumber"
                       value={formData.cardNumber}
                       onChange={handleChange}
+                      ref={CardNumberRef}
                     />
                     {errors.cardNumber && (
                       <span
@@ -467,10 +596,11 @@ function CheckOutpage() {
                     <div>
                       <label>Expiration Date *</label>
                       <input
-                        type="number"
+                        type="text"
                         name="expirationDate"
                         value={formData.expirationDate}
                         onChange={handleChange}
+                        ref={ExpirationDateRef}
                       />
                       {errors.expirationDate && (
                         <span
@@ -492,6 +622,7 @@ function CheckOutpage() {
                         name="securityCode"
                         value={formData.securityCode}
                         onChange={handleChange}
+                        ref={SecurityCodeRef}
                       />
                       {errors.securityCode && (
                         <span
