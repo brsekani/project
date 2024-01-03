@@ -3,6 +3,9 @@ import { Nav } from "../components/Nav";
 import { useRef, useState } from "react";
 
 function CheckOutpage() {
+  // Order Received
+  const [orderReceived, setOrderReceived] = useState(false);
+
   const location = useLocation();
 
   // console.log(location);
@@ -248,6 +251,7 @@ function CheckOutpage() {
     if (validateForm()) {
       // Form is vaild, proceed with submission or other actions
       console.log("Form submitted:", formData);
+      setOrderReceived(true);
     } else {
       console.log("Form contains errors");
     }
@@ -259,8 +263,26 @@ function CheckOutpage() {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Function to close the order received overlay
+  const handleCloseOverlay = () => {
+    setOrderReceived(false);
+  };
+
   return (
     <div>
+      {orderReceived && (
+        <div className="order-received-overlay" onClick={handleCloseOverlay}>
+          <div className="order-received" onClick={(e) => e.stopPropagation()}>
+            <img
+              src="\animation\order placed animation.gif"
+              alt="Order Received Icon"
+            />
+            <h2>Order Received!</h2>
+            <p>Your order has been successfully placed. Thank you!</p>
+            <button onClick={handleCloseOverlay}>Buy Again</button>
+          </div>
+        </div>
+      )}
       <>
         <Link to="/" className="noUnderLine">
           <Nav>
@@ -294,6 +316,7 @@ function CheckOutpage() {
                       value={formData.email}
                       onChange={handleChange}
                       ref={EmailRef}
+                      id={errors.email ? "input-error" : ""}
                     />
                     {errors.email && (
                       <span
@@ -326,6 +349,7 @@ function CheckOutpage() {
                       value={formData.shippingFullName}
                       onChange={handleChange}
                       ref={ShippingFullNameRef}
+                      id={errors.shippingFullName ? "input-error" : ""}
                     />
                     {errors.shippingFullName && (
                       <span
@@ -348,6 +372,7 @@ function CheckOutpage() {
                       value={formData.ShippingStreetAddress}
                       onChange={handleChange}
                       ref={ShippingStreetAddressRef}
+                      id={errors.ShippingStreetAddress ? "input-error" : ""}
                     />
                     <input type="text" />
                     {errors.ShippingStreetAddress && (
@@ -372,6 +397,7 @@ function CheckOutpage() {
                         value={formData.city}
                         onChange={handleChange}
                         ref={CityRef}
+                        id={errors.city ? "input-error" : ""}
                       />
                       {errors.city && (
                         <span
@@ -394,6 +420,7 @@ function CheckOutpage() {
                         value={formData.stateProvince}
                         onChange={handleChange}
                         ref={StateProvinceRef}
+                        id={errors.stateProvince ? "input-error" : ""}
                       />
                       {errors.stateProvince && (
                         <span
@@ -416,6 +443,7 @@ function CheckOutpage() {
                         value={formData.zipPostalCode}
                         onChange={handleChange}
                         ref={ZipPostalCodeRef}
+                        id={errors.zipPostalCode ? "input-error" : ""}
                       />
                       {errors.zipPostalCode && (
                         <span
@@ -440,6 +468,7 @@ function CheckOutpage() {
                       ref={ShippingCountryRef}
                       value={formData.shippingCountry}
                       onChange={handleChange}
+                      id={errors.shippingCountry ? "input-error" : ""}
                     />
                     {errors.shippingCountry && (
                       <span
@@ -472,6 +501,7 @@ function CheckOutpage() {
                       value={formData.billingFullName}
                       onChange={handleChange}
                       ref={BillingFullNameRef}
+                      id={errors.billingFullName ? "input-error" : ""}
                     />
                     {errors.billingFullName && (
                       <span
@@ -494,6 +524,7 @@ function CheckOutpage() {
                       value={formData.billingStreetAddress}
                       onChange={handleChange}
                       ref={BillingStreetAddressRef}
+                      id={errors.billingStreetAddress ? "input-error" : ""}
                     />
                     <input type="text" />
                     {errors.billingStreetAddress && (
@@ -529,6 +560,7 @@ function CheckOutpage() {
                       value={formData.billingCountry}
                       onChange={handleChange}
                       ref={BillingCountryRef}
+                      id={errors.billingCountry ? "input-error" : ""}
                     />
                     {errors.billingCountry && (
                       <span
@@ -578,6 +610,7 @@ function CheckOutpage() {
                       value={formData.cardNumber}
                       onChange={handleChange}
                       ref={CardNumberRef}
+                      id={errors.cardNumber ? "input-error" : ""}
                     />
                     {errors.cardNumber && (
                       <span
@@ -601,6 +634,7 @@ function CheckOutpage() {
                         value={formData.expirationDate}
                         onChange={handleChange}
                         ref={ExpirationDateRef}
+                        id={errors.expirationDate ? "input-error" : ""}
                       />
                       {errors.expirationDate && (
                         <span
@@ -623,6 +657,7 @@ function CheckOutpage() {
                         value={formData.securityCode}
                         onChange={handleChange}
                         ref={SecurityCodeRef}
+                        id={errors.securityCode ? "input-error" : ""}
                       />
                       {errors.securityCode && (
                         <span
