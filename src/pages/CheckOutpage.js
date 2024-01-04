@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Nav } from "../components/Nav";
 import { useRef, useState } from "react";
+import { FaCheck } from "react-icons/fa";
 
 function CheckOutpage() {
   // Order Received
@@ -271,15 +272,18 @@ function CheckOutpage() {
   return (
     <div>
       {orderReceived && (
-        <div className="order-received-overlay" onClick={handleCloseOverlay}>
+        <div className="order-received-overlay " onClick={handleCloseOverlay}>
           <div className="order-received" onClick={(e) => e.stopPropagation()}>
-            <img
-              src="\animation\order placed animation.gif"
-              alt="Order Received Icon"
-            />
+            <FaCheck size={100} />
             <h2>Order Received!</h2>
             <p>Your order has been successfully placed. Thank you!</p>
-            <button onClick={handleCloseOverlay}>Buy Again</button>
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
+              onClick={handleCloseOverlay}
+            >
+              <button>Buy Again</button>
+            </Link>
           </div>
         </div>
       )}

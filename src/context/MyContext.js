@@ -6,6 +6,7 @@ import {
   useReducer,
   useState,
 } from "react";
+import { useSpring, animated, config } from "react-spring";
 import Data from "../Data.json";
 import { toast } from "react-toastify";
 
@@ -22,6 +23,7 @@ const MyContext = createContext();
 // Step 2: Define initail  state and reducer function
 const initailstate = {
   cart: [],
+  isFiltering: false,
 };
 
 const reducer = (state, action) => {
@@ -58,6 +60,7 @@ const reducer = (state, action) => {
         return {
           ...state,
           cart: [...state.cart, { ...action.payload, quantity: 1 }],
+          isFiltering: false,
         };
       }
 
@@ -69,11 +72,13 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: updatedCart,
+        isFiltering: false,
       };
 
     case "INCREMENT_QUANTITY":
       return {
         ...state,
+        isFiltering: false,
         cart: state.cart.map((item) =>
           item.id === action.payload
             ? { ...item, quantity: item.quantity + 1 }
@@ -86,6 +91,7 @@ const reducer = (state, action) => {
 
       return {
         ...state,
+        isFiltering: false,
         cart: state.cart.map((item) =>
           item.id === action.payload
             ? { ...item, quantity: item.quantity - 1 }
@@ -96,6 +102,7 @@ const reducer = (state, action) => {
     case "TOGGLE_CHECK_PRODUCT":
       return {
         ...state,
+        isFiltering: false,
         cart: state.cart.map((item) =>
           item.id === action.payload
             ? { ...item, checked: !item.checked }
@@ -121,10 +128,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         cart: checkedAllItems,
+        isFiltering: false,
       };
 
     case "SET_CART":
-      return { ...state, cart: action.payload };
+      return { ...state, isFiltering: false, cart: action.payload };
+
+    case "SET_FILTERING":
+      return { ...state, isFiltering: action.payload };
 
     default:
       return state;
@@ -135,7 +146,7 @@ const reducer = (state, action) => {
 const MyProvider = ({ children }) => {
   const [isRed, setIsRed] = useState(true);
 
-  const [{ cart }, dispatch] = useReducer(reducer, initailstate);
+  const [{ cart, isFiltering }, dispatch] = useReducer(reducer, initailstate);
 
   // Load cart data from local storage on component mount
   useEffect(() => {
@@ -210,22 +221,24 @@ const MyProvider = ({ children }) => {
           (minPrice === null || product.price > minPrice) &&
           (maxPrice === null || product.price < maxPrice)
       );
+      dispatch({ type: "SET_FILTERING", payload: false });
       setData(filteredData);
-      console.log(filteredData);
     } else {
       // Reset to the original state
       setData(originalData);
-      console.log(originalData);
+      dispatch({ type: "SET_FILTERING", payload: false });
     }
   }, [minPrice, maxPrice]);
 
   const handleFilterClick = (clickedMinPrice, clickedMaxPrice) => {
     if (clickedMinPrice === minPrice && clickedMaxPrice === maxPrice) {
       // Reset to the original state
+      dispatch({ type: "SET_FILTERING", payload: true });
       setMinPrice(null);
       setMaxPrice(null);
     } else {
       // Apply filters on the next render (useEffect)
+      dispatch({ type: "SET_FILTERING", payload: true });
       setMinPrice(clickedMinPrice);
       setMaxPrice(clickedMaxPrice);
     }
@@ -242,9 +255,15 @@ const MyProvider = ({ children }) => {
         moveComponentToFront,
         data,
         handleFilterClick,
+        isFiltering,
       }}
     >
       {children}
+      {/* {isFiltering ? (
+        <animated.div style={springProps}>{children}</animated.div>
+      ) : (
+        children
+      )} */}
     </MyContext.Provider>
   );
 };
