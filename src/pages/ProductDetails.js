@@ -7,7 +7,7 @@ import { Nav } from "../components/Nav";
 
 function ProductDetails() {
   const productID = useParams();
-  console.log(productID.name);
+
   const product = data.products[productID.name - 1];
 
   return (

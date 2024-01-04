@@ -11,13 +11,17 @@ function CategoriesContainer() {
     config: config.gentle, // Adjust the config for smoother animation
     reset: true,
   });
-  const { componentOrder } = useMyContext();
+  const { componentOrder, isFiltering } = useMyContext();
 
   return (
     <div>
-      <animated.div style={springProps}>
-        {componentOrder.map((component) => component)}
-      </animated.div>
+      {isFiltering ? (
+        <animated.div style={springProps}>
+          {componentOrder.map((component) => component)}
+        </animated.div>
+      ) : (
+        componentOrder.map((component) => component)
+      )}
     </div>
   );
 }

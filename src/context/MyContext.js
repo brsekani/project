@@ -68,7 +68,7 @@ const reducer = (state, action) => {
       const updatedCart = state.cart.filter(
         (item) => item.id !== action.payload.id
       );
-      console.log(updatedCart);
+
       return {
         ...state,
         cart: updatedCart,
@@ -87,14 +87,12 @@ const reducer = (state, action) => {
       };
 
     case "DECREMENT_QUANTITY":
-      // if (state.cart.map((item) => item.quantity <= 1)) return state;
-
       return {
         ...state,
         isFiltering: false,
         cart: state.cart.map((item) =>
           item.id === action.payload
-            ? { ...item, quantity: item.quantity - 1 }
+            ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 }
             : item
         ),
       };
@@ -157,7 +155,6 @@ const MyProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Updating local storage with new cart data:", cart);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 

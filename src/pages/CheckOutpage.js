@@ -29,7 +29,6 @@ function CheckOutpage() {
   });
 
   const [errors, setErrors] = useState({});
-  console.log(errors);
 
   // Create res for each input field
   const EmailRef = useRef(null);
@@ -251,10 +250,10 @@ function CheckOutpage() {
     e.preventDefault();
     if (validateForm()) {
       // Form is vaild, proceed with submission or other actions
-      console.log("Form submitted:", formData);
+      // console.log("Form submitted:", formData);
       setOrderReceived(true);
     } else {
-      console.log("Form contains errors");
+      // console.log("Form contains errors");
     }
   }
 

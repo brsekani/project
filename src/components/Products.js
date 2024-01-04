@@ -56,7 +56,6 @@ function Products({ product }) {
       {/* STILL WORKING ON IT */}
       <button
         onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
-        // onClick={() => console.log(product)}
       >
         Add to Cart
       </button>

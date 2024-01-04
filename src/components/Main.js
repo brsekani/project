@@ -13,7 +13,7 @@ function Main() {
           satisfaction is our top priority, so start shopping now and elevate
           your life! Buy Now
         </p>
-        <Link to="/checkout">
+        <Link to="/">
           <button>Buy Now</button>
         </Link>
       </div>
